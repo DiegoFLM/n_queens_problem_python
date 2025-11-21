@@ -88,7 +88,7 @@ class EvolManager:
         self.__offspring: List[Chromosome] = []
         self.__offspring_size: int = int(offspring)
         self.__big_array: List[Chromosome] = []
-        self.__solution_times: npt.NDArray[np.float_] = np.array([], dtype=float)
+        self.__solution_times: npt.NDArray[np.float64] = np.array([], dtype=float)
         self.__mutation_rate: float = mutation_rate
         self.__reproductive_coefficient: float = reproductive_coefficient
         self.__starting_time: Optional[float] = None
@@ -134,7 +134,7 @@ class EvolManager:
         """Get all unique solutions found."""
         return self.__solutions
 
-    def get_solution_times(self) -> npt.NDArray[np.float_]:
+    def get_solution_times(self) -> npt.NDArray[np.float64]:
         """Get time taken to find each solution."""
         return self.__solution_times
 

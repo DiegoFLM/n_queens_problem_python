@@ -2,6 +2,10 @@
 
 A Python implementation of multiple algorithmic approaches to solve the N-Queens problem using genetic algorithms, Las Vegas, and Monte Carlo methods.
 
+<p align="center">
+  <img src="docs/images/8queens_solution.png" alt="8-Queens Solution" width="400"/>
+</p>
+
 ## Problem Description
 
 The N-Queens problem is a classic combinatorial puzzle where the goal is to place N chess queens on an N×N chessboard such that no two queens threaten each other. This means:
@@ -37,6 +41,31 @@ This project implements three different algorithmic strategies:
 - **Statistical analysis** with visualization support
 - **Performance tracking** for time-to-solution metrics
 - **Configurable parameters** for fine-tuning algorithm behavior
+- **Professional visualizations** with chess board rendering and performance charts
+
+## Visualizations
+
+The project includes comprehensive visualization capabilities:
+
+### Multiple Solutions Display
+<p align="center">
+  <img src="docs/images/8queens_multiple_solutions.png" alt="Multiple 8-Queens Solutions" width="700"/>
+</p>
+
+### Performance Comparison
+<p align="center">
+  <img src="docs/images/performance_comparison.png" alt="Algorithm Performance Comparison" width="700"/>
+</p>
+
+### Fitness Evolution
+<p align="center">
+  <img src="docs/images/fitness_evolution.png" alt="Fitness Evolution" width="700"/>
+</p>
+
+### Solution Discovery Timeline
+<p align="center">
+  <img src="docs/images/solution_timeline.png" alt="Solution Timeline" width="700"/>
+</p>
 
 ## Installation
 
@@ -106,6 +135,29 @@ probability = evol_manager.montecarlo(500000)
 print(f"Solution probability: {probability}")
 ```
 
+### Using Visualizations
+
+```python
+from n_queens import Chromosome, visualization
+import numpy as np
+
+# Create and visualize a solution
+solution = Chromosome(np.array([3, 6, 2, 7, 1, 4, 0, 5]))
+visualization.render_board(
+    solution.get_positions(),
+    title="8-Queens Solution",
+    save_path="my_solution.png"
+)
+
+# Display multiple solutions
+solutions = evol_manager.get_solutions()
+visualization.render_multiple_solutions(solutions, max_display=6)
+
+# Plot fitness evolution
+fitness_history = [0.7, 0.75, 0.82, 0.88, 0.93, 0.97, 1.0]
+visualization.plot_fitness_evolution(fitness_history)
+```
+
 ## Project Structure
 
 ```
@@ -115,21 +167,23 @@ n_queens_problem_python/
 │   └── n_queens/
 │       ├── __init__.py           # Package initialization
 │       ├── chromosome.py         # Chromosome class implementation
-│       └── evolution_manager.py  # Evolution manager with all algorithms
+│       ├── evolution_manager.py  # Evolution manager with all algorithms
+│       └── visualization.py      # Visualization utilities
 │
 ├── notebooks/
-│   ├── chromosome.ipynb          # Chromosome experiments and tests
-│   ├── evol_manager_s1.ipynb     # Algorithm demonstrations
-│   └── stats_evol_manager_s1.ipynb  # Statistical analysis and visualizations
+│   ├── 01_chromosome_demo.ipynb         # Chromosome class demonstrations
+│   ├── 02_algorithm_comparison.ipynb    # Algorithm comparisons and benchmarks
+│   └── 03_statistical_analysis.ipynb    # Statistical analysis and convergence
 │
 ├── tests/                        # Unit tests (to be implemented)
 ├── docs/
-│   └── images/                   # Documentation images
+│   └── images/                   # Documentation images and visualizations
 ├── data/
 │   ├── raw/                      # Raw experimental data
 │   └── processed/                # Processed results
 ├── results/                      # Output files and figures
 │
+├── generate_visualizations.py   # Script to generate documentation images
 ├── .gitignore                    # Git ignore file
 ├── requirements.txt              # Python dependencies
 ├── JNotebook.yml                 # Conda environment specification
@@ -138,17 +192,29 @@ n_queens_problem_python/
 
 ### Key Components
 
-- **Chromosome class**: Represents a board configuration with queens
+- **Chromosome class** (`src/n_queens/chromosome.py`): Represents a board configuration
   - `fitness()`: Evaluates solution quality (0-1, where 1 is perfect)
   - `mutual_threats()`: Counts queen conflicts
   - `make_child()`: Generates offspring through mutation
   - `print_board()`: Visualizes the board configuration
 
-- **EvolManager class**: Orchestrates the evolutionary process
+- **EvolManager class** (`src/n_queens/evolution_manager.py`): Orchestrates the evolutionary process
   - Population management
   - Selection and reproduction
-  - Multiple algorithmic approaches
+  - Multiple algorithmic approaches (Genetic, Las Vegas, Monte Carlo)
   - Solution tracking and statistics
+
+- **Visualization module** (`src/n_queens/visualization.py`): Professional visualizations
+  - `render_board()`: Chess board with queen symbols ♛
+  - `render_multiple_solutions()`: Grid display of multiple solutions
+  - `plot_fitness_evolution()`: Fitness progression over generations
+  - `plot_performance_comparison()`: Algorithm performance charts
+  - `plot_solution_distribution()`: Solution discovery timeline
+
+- **Interactive Notebooks** (`notebooks/`): Demonstrations and analysis
+  - `01_chromosome_demo.ipynb`: Chromosome class usage examples
+  - `02_algorithm_comparison.ipynb`: Compare all three algorithms
+  - `03_statistical_analysis.ipynb`: Population statistics and convergence
 
 ## Results
 

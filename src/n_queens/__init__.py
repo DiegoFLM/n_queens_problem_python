@@ -14,6 +14,7 @@ Example:
 
 from .chromosome import Chromosome
 from .evolution_manager import EvolManager
+from . import visualization
 
 __version__ = "1.0.0"
-__all__ = ["Chromosome", "EvolManager"]
+__all__ = ["Chromosome", "EvolManager", "visualization"]
