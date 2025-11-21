@@ -52,14 +52,20 @@ git clone <repository-url>
 cd n_queens_problem_python
 ```
 
-2. Create the conda environment:
+2. Install dependencies using pip:
 ```bash
-conda env create -f JNotebook.yml
+pip install -r requirements.txt
 ```
 
-3. Activate the environment:
+Or create the conda environment:
 ```bash
+conda env create -f JNotebook.yml
 conda activate JNotebook
+```
+
+3. Install the package in development mode (optional):
+```bash
+pip install -e .
 ```
 
 ## Usage
@@ -67,7 +73,7 @@ conda activate JNotebook
 ### Running the Genetic Algorithm
 
 ```python
-from evol_manager_s1 import EvolManager
+from n_queens import EvolManager
 
 # Create evolution manager for 12-Queens problem
 evol_manager = EvolManager(
@@ -105,9 +111,27 @@ print(f"Solution probability: {probability}")
 ```
 n_queens_problem_python/
 │
-├── chromosome.ipynb              # Chromosome class implementation
-├── evol_manager_s1.ipynb         # Evolution manager with all algorithms
-├── stats_evol_manager_s1.ipynb   # Statistical analysis and visualizations
+├── src/
+│   └── n_queens/
+│       ├── __init__.py           # Package initialization
+│       ├── chromosome.py         # Chromosome class implementation
+│       └── evolution_manager.py  # Evolution manager with all algorithms
+│
+├── notebooks/
+│   ├── chromosome.ipynb          # Chromosome experiments and tests
+│   ├── evol_manager_s1.ipynb     # Algorithm demonstrations
+│   └── stats_evol_manager_s1.ipynb  # Statistical analysis and visualizations
+│
+├── tests/                        # Unit tests (to be implemented)
+├── docs/
+│   └── images/                   # Documentation images
+├── data/
+│   ├── raw/                      # Raw experimental data
+│   └── processed/                # Processed results
+├── results/                      # Output files and figures
+│
+├── .gitignore                    # Git ignore file
+├── requirements.txt              # Python dependencies
 ├── JNotebook.yml                 # Conda environment specification
 └── README.md                     # This file
 ```
@@ -141,12 +165,16 @@ Example output for N=12, 1000 population, 50 generations:
 
 ## Dependencies
 
-Key libraries (see `JNotebook.yml` for complete list):
-- **NumPy** 1.24.1 - Array operations and numerical computing
-- **Pandas** 1.5.2 - Data analysis and statistics
-- **Matplotlib** 3.6.2 - Plotting and visualization
-- **Seaborn** 0.11.2 - Statistical data visualization
-- **nbimporter** 0.3.4 - Importing code from Jupyter notebooks
+Key libraries (see `requirements.txt` for complete list):
+- **NumPy** ≥1.24.0 - Array operations and numerical computing
+- **Pandas** ≥1.5.0 - Data analysis and statistics
+- **Matplotlib** ≥3.6.0 - Plotting and visualization
+- **Seaborn** ≥0.11.0 - Statistical data visualization
+- **SciPy** ≥1.10.0 - Scientific computing
+
+For Jupyter notebook support:
+- **IPython** ≥8.8.0
+- **nbimporter** ≥0.3.4
 
 ## Algorithm Parameters
 
